@@ -1,3 +1,5 @@
+import { Icon } from '../Icon/Icon';
+
 interface socialLinkProps {
   containerClassName: string;
   linkClassName: string;
@@ -18,9 +20,7 @@ const SocialLinks = ({
         className={linkClassName}
         aria-label="GitHub"
       >
-        <svg className={iconClassName}>
-          <use></use>
-        </svg>
+        <Icon name="git" className={iconClassName} />
       </a>
       <a
         href="https://www.linkedin.com/in/anastacia-tkachova/"
@@ -29,9 +29,7 @@ const SocialLinks = ({
         className={linkClassName}
         aria-label="LinkedIn"
       >
-        <svg className={iconClassName}>
-          <use></use>
-        </svg>
+        <Icon name="linked" className={iconClassName} />
       </a>
     </div>
   );
