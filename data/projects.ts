@@ -1,6 +1,6 @@
-import Project from '@/types/project';
+import { RawProject } from '@/types/project';
 
-export const projects: Project[] = [
+export const projects: RawProject[] = [
   {
     id: 'NoteHub',
     title: {
