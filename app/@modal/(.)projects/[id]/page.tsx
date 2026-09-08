@@ -3,10 +3,10 @@ import {
   HydrationBoundary,
   dehydrate,
 } from '@tanstack/react-query';
-import { fetchProjectById } from '@/lib/api/projects.js';
-import ProjectPreviewClient from './ProjectPreview.client.tsx';
 import { notFound } from 'next/navigation';
-import { getCurrentLang } from '@/lib/i18n/server.js';
+import { getCurrentLang } from '@/lib/i18n/server';
+import { fetchProjectById } from '@/lib/api/projects';
+import ProjectPreviewClient from './ProjectPreview.client';
 
 type Props = {
   params: Promise<{ id: string }>;
@@ -29,7 +29,7 @@ export default async function ProjectModalPage({ params }: Props) {
 
   return (
     <HydrationBoundary state={dehydrate(queryClient)}>
-      <ProjectPreviewClient />
+      <ProjectPreviewClient id={id} lang={lang} />
     </HydrationBoundary>
   );
 }
