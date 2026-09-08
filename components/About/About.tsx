@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import css from './About.module.css';
-import { Icon } from '../Icon/Icon';
+import { Icon } from '../ui/Icon/Icon';
 
 const About = () => {
   return (

@@ -1,5 +1,5 @@
-import SocialLinks from '../SocialLinks/SocialLinks';
-import Navigation from '../Navigation/Navigation';
+import SocialLinks from '../ui/SocialLinks/SocialLinks';
+import Navigation from '../ui/Navigation/Navigation';
 
 const MobileMenu = () => {
   return (

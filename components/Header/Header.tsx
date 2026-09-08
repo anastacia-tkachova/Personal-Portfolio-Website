@@ -1,6 +1,6 @@
 import css from './Header.module.css';
-import Navigation from '../Navigation/Navigation';
-import SocialLinks from '../SocialLinks/SocialLinks';
+import Navigation from '../ui/Navigation/Navigation';
+import SocialLinks from '../ui/SocialLinks/SocialLinks';
 import Image from 'next/image';
 import Link from 'next/link';
 

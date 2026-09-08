@@ -3,7 +3,7 @@
 import { useRouter } from 'next/navigation';
 import { useEffect } from 'react';
 import Image from 'next/image';
-import Modal from '@/components/Modal/Modal';
+import Modal from '@/components/ui/Modal/Modal';
 import type { Language } from '@/types/project';
 import css from '@/components/ProjectCard/ProjectCard.module.css';
 import { useQuery } from '@tanstack/react-query';
