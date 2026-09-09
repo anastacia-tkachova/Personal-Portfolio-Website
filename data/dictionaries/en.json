@@ -1,0 +1,33 @@
+{
+  "hero": {
+    "title": "Crafting Scalable Modern Web Applications",
+    "description": "I turn complex ideas into clean, efficient, and responsive web solutions with Next.js and modern backend architecture.",
+    "btn1": "View Projects!",
+    "btn2": "Let's Connect!"
+  },
+  "about": {
+    "imageAlt": "Anastacia - Full Stack Developer",
+    "title": "About Me",
+    "greeting1": "Hi, I'm ",
+    "greeting2": "Anastacia",
+    "greeting3": "!",
+    "article1": "I am a ",
+    "article2": "Full Stack Developer",
+    "article3": " and ",
+    "article4": "Digital Artist",
+    "article5": " who builds web applications from the ground up by combining ",
+    "article6": "React",
+    "article7": " & ",
+    "article8": "Next.js",
+    "article9": " flexibility with Node.js architecture. Moving from simple scripts to deploying full-scale production applications, I bridge the gap between complex engineering logic and clean, pixel-perfect design.",
+    "listStart1": "What I ",
+    "listStart2": "focus on",
+    "listStart3": ":",
+    "firstListItem1": "Frontend Precision",
+    "firstListItem2": ": Responsive UI/UX, advanced server-state management (TanStack Query), and seamless interactions.",
+    "secondListItem1": "Backend & Security",
+    "secondListItem2": ": Scalable Node.js architectures, complex REST APIs, and strict authentication layers.",
+    "thirdListItem1": "Engineering Mindset",
+    "thirdListItem2": ": Clean code, performance optimization, disciplined Git workflow, and creative problem-solving."
+  }
+}

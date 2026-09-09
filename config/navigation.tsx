@@ -1,12 +1,12 @@
 export interface NavItem {
-  label: string;
+  label: { en: string; ua: string };
   href: string;
 }
 
 export const NAV_ITEMS: NavItem[] = [
-  { label: 'Home', href: '/' },
-  { label: 'About Me', href: '/#about' },
-  { label: 'My Projects', href: '/#projects' },
-  { label: 'Contacts', href: '/#contacts' },
-  { label: 'My Education', href: '/#education' },
+  { label: { en: 'Home', ua: 'Головна' }, href: '/' },
+  { label: { en: 'About Me', ua: 'Про мене' }, href: '/#about' },
+  { label: { en: 'My Projects', ua: 'Мої проекти' }, href: '/#projects' },
+  { label: { en: 'Contacts', ua: 'Контакти' }, href: '/#contacts' },
+  { label: { en: 'My Education', ua: 'Моя освіта' }, href: '/#education' },
 ];

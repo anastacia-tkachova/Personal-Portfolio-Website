@@ -1,13 +1,16 @@
 import { NAV_ITEMS } from '@/config/navigation';
+import { Language } from '@/types/project';
 import Link from 'next/link';
 
 interface NavProps {
+  lang: Language;
   listClassName?: string;
   itemClassName?: string;
   linkClassName?: string;
 }
 
 const Navigation = ({
+  lang,
   listClassName = '',
   itemClassName = '',
   linkClassName = '',
@@ -17,7 +20,7 @@ const Navigation = ({
       {NAV_ITEMS.map(({ label, href }) => (
         <li key={href} className={itemClassName}>
           <Link href={href} className={linkClassName}>
-            {label}
+            {label[lang]}
           </Link>
         </li>
       ))}

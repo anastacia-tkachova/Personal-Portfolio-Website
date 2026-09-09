@@ -1,17 +1,23 @@
 import css from './ProjectsGrid.module.css';
-import { Project } from '@/types/project';
+import { Language, Project } from '@/types/project';
 import ProjectCard from '../ProjectCard/ProjectCard';
 import clsx from 'clsx';
 
 export interface ProjectGridProps {
   projects: Project[];
+  lang: Language;
 }
 
-const ProjectGrid = ({ projects }: ProjectGridProps) => {
+const EMPTY_MESSAGES: Record<Language, string> = {
+  en: 'No projects found.',
+  ua: 'Проєкти не знайдені.',
+};
+
+const ProjectGrid = ({ projects, lang }: ProjectGridProps) => {
   if (!projects || projects.length === 0) {
     return (
       <div className={css.emptyState}>
-        <p>No projects found.</p>
+        <p>{EMPTY_MESSAGES[lang]}</p>
       </div>
     );
   }

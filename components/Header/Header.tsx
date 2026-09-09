@@ -3,8 +3,12 @@ import Navigation from '../ui/Navigation/Navigation';
 import SocialLinks from '../ui/SocialLinks/SocialLinks';
 import Image from 'next/image';
 import Link from 'next/link';
+import { getCurrentLang } from '@/lib/i18n/server';
+import { LangToggle } from '../ui/LangToggle/LangToggle';
 
-const Header = () => {
+const Header = async () => {
+  const lang = await getCurrentLang();
+
   return (
     <header className={css.header}>
       <Link href="/" className={css.logoLink}>
@@ -19,6 +23,7 @@ const Header = () => {
 
       <nav aria-label="Main Navigation" className={css.headerNav}>
         <Navigation
+          lang={lang}
           listClassName={css.headerNavList}
           itemClassName={css.headerNavItem}
           linkClassName={css.headerNavLink}
@@ -31,7 +36,12 @@ const Header = () => {
           linkClassName={css.headerSocialLink}
           iconClassName={css.headerSocialIcon}
         />
-        <div className={css.headerOptionSettings}></div>
+
+        <div className={css.headerOptionSettings}>
+          <div className={css.headerOptionSettings}>
+            <LangToggle currentLang={lang} />
+          </div>
+        </div>
       </div>
     </header>
   );

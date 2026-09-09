@@ -1,13 +1,18 @@
 import css from './Footer.module.css';
 import Navigation from '../ui/Navigation/Navigation';
 import SocialLinks from '../ui/SocialLinks/SocialLinks';
+import { getCurrentLang } from '@/lib/i18n/server';
+import { LangToggle } from '../ui/LangToggle/LangToggle';
 
-const Footer = () => {
+const Footer = async () => {
+  const lang = await getCurrentLang();
+
   return (
     <footer className={css.footer}>
       <div className={css.content}>
         <nav className={css.footerNav}>
           <Navigation
+            lang={lang}
             listClassName={css.footerNavList}
             itemClassName={css.footerNavItem}
             linkClassName={css.footerNavLink}
@@ -20,7 +25,11 @@ const Footer = () => {
             linkClassName={css.headerSocialLink}
             iconClassName={css.headerSocialIcon}
           />
-          <div className={css.footerOptionSettings}></div>
+          <div className={css.footerOptionSettings}>
+            <div className={css.footerOptionSettings}>
+              <LangToggle currentLang={lang} />
+            </div>
+          </div>
         </div>
 
         <div className={css.footerOwner}>
