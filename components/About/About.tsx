@@ -1,13 +1,9 @@
 import Image from 'next/image';
 import css from './About.module.css';
 import { Icon } from '../ui/Icon/Icon';
-import { getCurrentLang } from '@/lib/i18n/server';
-import { getDictionary } from '@/lib/i18n/getDictionary';
+import type { Dictionary } from '@/lib/i18n/getDictionary';
 
-const About = async () => {
-  const lang = await getCurrentLang();
-  const dict = await getDictionary(lang);
-
+const About = (dict: Dictionary) => {
   return (
     <section className={css.about}>
       <Image

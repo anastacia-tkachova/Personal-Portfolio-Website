@@ -8,13 +8,16 @@ import css from '@/components/ProjectCard/ProjectCard.module.css';
 import { useQuery } from '@tanstack/react-query';
 import { fetchProjectById } from '@/lib/api/projects';
 import ProjectCard from '@/components/ProjectCard/ProjectCard';
+import { Loader } from '@/components/ui/Loader';
+import { Dictionary } from '@/lib/i18n/getDictionary';
 
 interface Props {
   id: string;
   lang: Language;
+  dict: Dictionary;
 }
 
-export default function ProjectPreviewClient({ id, lang }: Props) {
+export default function ProjectPreviewClient({ id, lang, dict }: Props) {
   const router = useRouter();
 
   const {
@@ -45,9 +48,7 @@ export default function ProjectPreviewClient({ id, lang }: Props) {
   if (isLoading) {
     return (
       <Modal onClose={handleClose}>
-        <div className={css.container}>
-          <p>Loading project details...</p>
-        </div>
+        <Loader />
       </Modal>
     );
   }
@@ -56,7 +57,7 @@ export default function ProjectPreviewClient({ id, lang }: Props) {
     return (
       <Modal onClose={handleClose}>
         <div className={css.container}>
-          <p>Something went wrong while loading project details.</p>
+          <p>{dict.projects.modalError}</p>
           <button className={css.backBtn} onClick={handleClose}>
             Close
           </button>

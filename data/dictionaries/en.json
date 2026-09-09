@@ -29,5 +29,14 @@
     "secondListItem2": ": Scalable Node.js architectures, complex REST APIs, and strict authentication layers.",
     "thirdListItem1": "Engineering Mindset",
     "thirdListItem2": ": Clean code, performance optimization, disciplined Git workflow, and creative problem-solving."
+  },
+  "projects": {
+    "notFound": "No projects found.",
+    "modalError": "Something went wrong while loading project details."
+  },
+  "footer": {
+    "title": "About this Portfolio:",
+    "description": "Built with Next.js (App Router), TypeScript, Tailwind CSS & next-themes. Designed with i18n support and responsive layout.",
+    "rights": "© 2026 Anastasia Tkachova. All rights reserved."
   }
 }

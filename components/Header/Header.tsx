@@ -3,12 +3,10 @@ import Navigation from '../ui/Navigation/Navigation';
 import SocialLinks from '../ui/SocialLinks/SocialLinks';
 import Image from 'next/image';
 import Link from 'next/link';
-import { getCurrentLang } from '@/lib/i18n/server';
 import { LangToggle } from '../ui/LangToggle/LangToggle';
+import { Language } from '@/types/project';
 
-const Header = async () => {
-  const lang = await getCurrentLang();
-
+const Header = (lang: Language) => {
   return (
     <header className={css.header}>
       <Link href="/" className={css.logoLink}>

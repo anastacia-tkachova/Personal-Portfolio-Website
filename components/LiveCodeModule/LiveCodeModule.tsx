@@ -1,8 +1,9 @@
 import { useState } from 'react';
 import css from './LiveCodeModule.module.css';
 import toast from 'react-hot-toast';
+import { Dictionary } from '@/lib/i18n/getDictionary';
 
-const LiveCodeModule = () => {
+const LiveCodeModule = (dict: Dictionary) => {
   const [userName, setUserName] = useState<string>('Guest');
   const [animationKey, setAnimationKey] = useState<number>(0);
 

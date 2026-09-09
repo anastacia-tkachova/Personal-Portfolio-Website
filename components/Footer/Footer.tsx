@@ -1,12 +1,16 @@
 import css from './Footer.module.css';
 import Navigation from '../ui/Navigation/Navigation';
 import SocialLinks from '../ui/SocialLinks/SocialLinks';
-import { getCurrentLang } from '@/lib/i18n/server';
 import { LangToggle } from '../ui/LangToggle/LangToggle';
+import { Language } from '@/types/project';
+import { Dictionary } from '@/lib/i18n/getDictionary';
 
-const Footer = async () => {
-  const lang = await getCurrentLang();
+export interface FooterProps {
+  lang: Language;
+  dict: Dictionary;
+}
 
+const Footer = ({ lang, dict }: FooterProps) => {
   return (
     <footer className={css.footer}>
       <div className={css.content}>
@@ -33,12 +37,9 @@ const Footer = async () => {
         </div>
 
         <div className={css.footerOwner}>
-          <p className={css.footerOwnerText}>About this Portfolio:</p>
+          <p className={css.footerOwnerText}>{dict.footer.title}</p>
 
-          <p className={css.footerOwnerText}>
-            Built with Next.js (App Router), TypeScript, Tailwind CSS &
-            next-themes. Designed with i18n support and responsive layout.
-          </p>
+          <p className={css.footerOwnerText}>{dict.footer.description}</p>
 
           <a
             href="mailto:anastasia.tkachova.js@gmail.com"
@@ -49,9 +50,7 @@ const Footer = async () => {
         </div>
       </div>
 
-      <p className={css.rights}>
-        © 2026 Anastasia Tkachova. All rights reserved.
-      </p>
+      <p className={css.rights}>{dict.footer.rights}</p>
     </footer>
   );
 };
