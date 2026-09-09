@@ -12,7 +12,6 @@ export interface RawProject {
   article: LocalizedField;
   tags: string[];
   image: string;
-  imageAlt: LocalizedField;
   demo: string;
   demoUrl: string;
   githubUrl: string;
@@ -26,7 +25,6 @@ export type Project = {
   article: string;
   tags: string[];
   image: string;
-  imageAlt: string;
   demo: string;
   demoUrl: string;
   githubUrl: string;

@@ -2,12 +2,12 @@
 
 import { useRouter } from 'next/navigation';
 import { useEffect } from 'react';
-import Image from 'next/image';
 import Modal from '@/components/ui/Modal/Modal';
 import type { Language } from '@/types/project';
 import css from '@/components/ProjectCard/ProjectCard.module.css';
 import { useQuery } from '@tanstack/react-query';
 import { fetchProjectById } from '@/lib/api/projects';
+import ProjectCard from '@/components/ProjectCard/ProjectCard';
 
 interface Props {
   id: string;
@@ -17,7 +17,11 @@ interface Props {
 export default function ProjectPreviewClient({ id, lang }: Props) {
   const router = useRouter();
 
-  const { data: project, error } = useQuery({
+  const {
+    data: project,
+    isLoading,
+    isError,
+  } = useQuery({
     queryKey: ['project', id, lang],
     queryFn: () => fetchProjectById(id, lang),
     enabled: Boolean(id),
@@ -38,7 +42,17 @@ export default function ProjectPreviewClient({ id, lang }: Props) {
     router.back();
   };
 
-  if (error || !project) {
+  if (isLoading) {
+    return (
+      <Modal onClose={handleClose}>
+        <div className={css.container}>
+          <p>Loading project details...</p>
+        </div>
+      </Modal>
+    );
+  }
+
+  if (isError || !project) {
     return (
       <Modal onClose={handleClose}>
         <div className={css.container}>
@@ -58,47 +72,7 @@ export default function ProjectPreviewClient({ id, lang }: Props) {
           Close
         </button>
 
-        <div className={css.projectImageArea}>
-          <Image
-            src={project.image}
-            alt={project.imageAlt || project.title}
-            fill
-            sizes="(max-width: 768px) 100vw, 800px"
-            className={css.projectImage}
-          />
-
-          <ul className={css.projectTagList}>
-            {project.tags.map(tag => (
-              <li key={tag} className={css.projectTagItem}>
-                <p className={css.projectTagLabel}>{tag}</p>
-              </li>
-            ))}
-          </ul>
-        </div>
-
-        <div className={css.projectTextArea}>
-          <h2 className={css.projectTitle}>{project.title}</h2>
-          <p className={css.projectText}>{project.article}</p>
-        </div>
-
-        <div className={css.projectButtonList}>
-          <a
-            href={project.demoUrl}
-            target="_blank"
-            rel="noreferrer noopener"
-            className={css.projectButton}
-          >
-            Live Demo
-          </a>
-          <a
-            href={project.githubUrl}
-            target="_blank"
-            rel="noreferrer noopener"
-            className={css.projectButton}
-          >
-            GitHub Code
-          </a>
-        </div>
+        <ProjectCard project={project} isModal={true} isList={false} />
       </div>
     </Modal>
   );
