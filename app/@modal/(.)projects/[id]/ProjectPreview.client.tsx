@@ -2,22 +2,28 @@
 
 import { useRouter } from 'next/navigation';
 import { useEffect } from 'react';
-import Modal from '@/components/ui/Modal/Modal';
-import type { Language } from '@/types/project';
+import Modal from '@/app/components/ui/Modal/Modal';
+import type { Language, Project } from '@/types/project';
 import css from '@/components/ProjectCard/ProjectCard.module.css';
 import { useQuery } from '@tanstack/react-query';
 import { fetchProjectById } from '@/lib/api/projects';
-import ProjectCard from '@/components/ProjectCard/ProjectCard';
-import { Loader } from '@/components/ui/Loader';
+import ProjectCard from '@/app/components/ProjectCard/ProjectCard';
+import { Loader } from '@/app/components/ui/Loader';
 import { Dictionary } from '@/lib/i18n/getDictionary';
 
 interface Props {
   id: string;
   lang: Language;
   dict: Dictionary;
+  initialData?: Project;
 }
 
-export default function ProjectPreviewClient({ id, lang, dict }: Props) {
+export default function ProjectPreviewClient({
+  id,
+  lang,
+  dict,
+  initialData,
+}: Props) {
   const router = useRouter();
 
   const {
@@ -27,6 +33,7 @@ export default function ProjectPreviewClient({ id, lang, dict }: Props) {
   } = useQuery({
     queryKey: ['project', id, lang],
     queryFn: () => fetchProjectById(id, lang),
+    initialData,
     enabled: Boolean(id),
     staleTime: 1000 * 60 * 5,
   });
@@ -42,7 +49,11 @@ export default function ProjectPreviewClient({ id, lang, dict }: Props) {
   }, [project?.title]);
 
   const handleClose = () => {
-    router.back();
+    if (window.history.length > 2) {
+      router.back();
+    } else {
+      router.push('/projects');
+    }
   };
 
   if (isLoading) {

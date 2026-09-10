@@ -34,6 +34,9 @@
     "notFound": "No projects found.",
     "modalError": "Something went wrong while loading project details."
   },
+  "contacts": {
+    "title": "Contacts"
+  },
   "footer": {
     "title": "About this Portfolio:",
     "description": "Built with Next.js (App Router), TypeScript, Tailwind CSS & next-themes. Designed with i18n support and responsive layout.",

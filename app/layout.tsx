@@ -1,10 +1,10 @@
 import type { Metadata } from 'next';
 import { metadataTranslations } from '@/data/dictionary';
 import { Roboto } from 'next/font/google';
-import TanStackProvider from '@/components/TanStackProvider/TanStackProvider';
+import TanStackProvider from '@/app/components/TanStackProvider/TanStackProvider';
 import './globals.css';
-import Header from '@/components/Header/Header';
-import Footer from '@/components/Footer/Footer';
+import Header from '@/app/components/Header/Header';
+import Footer from '@/app/components/Footer/Footer';
 
 const baseUrl = process.env.VERCEL_URL
   ? `https://${process.env.VERCEL_URL}`

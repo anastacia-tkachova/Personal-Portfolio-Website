@@ -7,6 +7,7 @@ import { notFound } from 'next/navigation';
 import { getCurrentLang } from '@/lib/i18n/server';
 import { fetchProjectById } from '@/lib/api/projects';
 import ProjectPreviewClient from './ProjectPreview.client';
+import { getDictionary } from '@/lib/i18n/getDictionary';
 
 type Props = {
   params: Promise<{ id: string }>;
@@ -15,6 +16,7 @@ type Props = {
 export default async function ProjectModalPage({ params }: Props) {
   const { id } = await params;
   const lang = await getCurrentLang();
+  const dict = await getDictionary(lang);
 
   if (!id) {
     notFound();
@@ -22,14 +24,14 @@ export default async function ProjectModalPage({ params }: Props) {
 
   const queryClient = new QueryClient();
 
-  await queryClient.prefetchQuery({
+  await queryClient.fetchQuery({
     queryKey: ['project', id, lang],
     queryFn: () => fetchProjectById(id, lang),
   });
 
   return (
     <HydrationBoundary state={dehydrate(queryClient)}>
-      <ProjectPreviewClient id={id} lang={lang} />
+      <ProjectPreviewClient id={id} lang={lang} dict={dict} />
     </HydrationBoundary>
   );
 }
