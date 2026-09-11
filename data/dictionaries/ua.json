@@ -38,6 +38,9 @@
   "contacts": {
     "title": "Контакти"
   },
+  "education": {
+    "title": "Освіта"
+  },
   "footer": {
     "title": "Про це портфоліо:",
     "description": "Створено за допомогою Next.js (App Router), TypeScript, Tailwind CSS та next-themes. Розроблено з підтримкою i18n та адаптивним дизайном.",

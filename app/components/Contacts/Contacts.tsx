@@ -8,7 +8,11 @@ import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Dictionary } from '@/lib/i18n/getDictionary';
 
-const Contacts = (dict: Dictionary) => {
+interface ContactsProps {
+  dict: Dictionary;
+}
+
+const Contacts = ({ dict }: ContactsProps) => {
   const [activeTab, setActiveTab] = useState(CONTACTS[0].id);
 
   const activeContact =

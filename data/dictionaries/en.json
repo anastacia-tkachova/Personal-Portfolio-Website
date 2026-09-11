@@ -37,6 +37,9 @@
   "contacts": {
     "title": "Contacts"
   },
+  "education": {
+    "title": "Education"
+  },
   "footer": {
     "title": "About this Portfolio:",
     "description": "Built with Next.js (App Router), TypeScript, Tailwind CSS & next-themes. Designed with i18n support and responsive layout.",

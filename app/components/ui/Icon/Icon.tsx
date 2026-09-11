@@ -11,7 +11,8 @@ export type IconName =
   | 'day'
   | 'night'
   | 'langArrow'
-  | 'linkArrow';
+  | 'linkArrow'
+  | 'college';
 
 interface IconProps extends SVGProps<SVGSVGElement> {
   name: IconName;
