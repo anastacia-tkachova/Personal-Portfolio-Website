@@ -1,10 +1,11 @@
 import type { Metadata } from 'next';
-import { metadataTranslations } from '@/data/dictionary';
 import { Roboto } from 'next/font/google';
 import TanStackProvider from '@/app/components/TanStackProvider/TanStackProvider';
 import './globals.css';
 import Header from '@/app/components/Header/Header';
 import Footer from '@/app/components/Footer/Footer';
+import { Language } from '@/types/project';
+import { getDictionary } from '@/lib/i18n/getDictionary';
 
 const baseUrl = process.env.VERCEL_URL
   ? `https://${process.env.VERCEL_URL}`
@@ -18,16 +19,16 @@ type Props = {
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { lang } = await params;
-  const t = metadataTranslations[lang] || metadataTranslations.en;
+  const dict = await getDictionary(lang as Language);
 
   return {
     metadataBase: new URL(baseUrl),
 
-    title: t.title,
-    description: t.description,
+    title: dict.metadataTranslations.title,
+    description: dict.metadataTranslations.description,
     openGraph: {
-      title: t.title,
-      description: t.description,
+      title: dict.metadataTranslations.title,
+      description: dict.metadataTranslations.description,
       url: '/',
       type: 'website',
       locale: lang === 'uk' ? 'uk_UA' : 'en_US',
@@ -36,18 +37,18 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
           url: '/openGraph.png',
           width: 1200,
           height: 630,
-          alt: t.title,
+          alt: dict.metadataTranslations.title,
         },
       ],
     },
     twitter: {
       card: 'summary_large_image',
-      title: t.title,
-      description: t.description,
+      title: dict.metadataTranslations.title,
+      description: dict.metadataTranslations.description,
       images: ['/openGraph.png'],
     },
     alternates: {
-      canonical: `/${lang}`,
+      canonical: `/`,
       languages: {
         en: '/en',
         uk: '/uk',
@@ -65,17 +66,18 @@ const roboto = Roboto({
 
 export default async function RootLayout({ children, modal, params }: Props) {
   const { lang } = await params;
+  const dict = await getDictionary(lang as Language);
 
   return (
     <html lang={lang || 'en'}>
       <body className={roboto.variable}>
         <TanStackProvider>
-          <Header />
+          <Header lang={lang as Language} />
 
           {children}
           {modal}
 
-          <Footer />
+          <Footer lang={lang as Language} dict={dict} />
         </TanStackProvider>
       </body>
     </html>

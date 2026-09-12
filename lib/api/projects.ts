@@ -11,3 +11,13 @@ export const fetchProjectById: ProjectApiService['fetchProjectById'] = async (id
   const { serverProjectApi } = await import('./serverApi');
   return serverProjectApi.fetchProjectById(id, lang);
 };
+
+export const fetchAllProjects: ProjectApiService['fetchAllProjects'] = async (lang) => {
+  if (isFileMode) {
+    const { fileProjectApi } = await import('./fileApi');
+    return fileProjectApi.fetchAllProjects(lang);
+  }
+
+  const { serverProjectApi } = await import('./serverApi');
+  return serverProjectApi.fetchAllProjects(lang);
+};

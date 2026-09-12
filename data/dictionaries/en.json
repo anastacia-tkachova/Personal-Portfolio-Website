@@ -1,9 +1,22 @@
 {
+  "metadataTranslations": {
+    "title": "Anastasia Tkachova — Full Stack Web Developer",
+    "description": "Full Stack Web Developer Portfolio — projects, skills, and contact information."
+  },
   "hero": {
     "title": "Crafting Scalable Modern Web Applications",
     "description": "I turn complex ideas into clean, efficient, and responsive web solutions with Next.js and modern backend architecture.",
     "btn1": "View Projects!",
     "btn2": "Let's Connect!"
+  },
+  "liveCodeModule": {
+    "greetText": "Welcome to my portfolio",
+    "placeholder": "> Enter your name...",
+    "btn1": "Try!",
+    "btn2": "Recruiter",
+    "btn3": "Client",
+    "btn4": "Friend",
+    "errorMsg": "Please enter your name."
   },
   "about": {
     "imageAlt": "Anastacia - Full Stack Developer",

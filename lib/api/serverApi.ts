@@ -17,4 +17,18 @@ export const serverProjectApi: ProjectApiService = {
 
     return response.data;
   },
+
+  async fetchAllProjects(lang: Language = 'en'): Promise<Project[]> {
+    const cookieStore = await cookies();
+
+    const response = await api.get<Project[]>('/projects', {
+      params: { lang },
+      headers: {
+        Cookie: cookieStore.toString(),
+        'Accept-Language': lang,
+      },
+    });
+
+    return response.data;
+  },
 };

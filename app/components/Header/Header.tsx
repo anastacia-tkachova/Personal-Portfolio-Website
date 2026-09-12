@@ -6,7 +6,11 @@ import Link from 'next/link';
 import { LangToggle } from '../ui/LangToggle/LangToggle';
 import { Language } from '@/types/project';
 
-const Header = (lang: Language) => {
+interface HeaderProps {
+  lang: Language;
+}
+
+const Header = ({ lang }: HeaderProps) => {
   return (
     <header className={css.header}>
       <Link href="/" className={css.logoLink}>

@@ -1,11 +1,18 @@
-import { useState } from 'react';
+'use client';
+
+import { useRef, useState } from 'react';
 import css from './LiveCodeModule.module.css';
 import toast from 'react-hot-toast';
 import { Dictionary } from '@/lib/i18n/getDictionary';
 
-const LiveCodeModule = (dict: Dictionary) => {
+export interface LiveCodeModuleProps {
+  dict: Dictionary;
+}
+
+const LiveCodeModule = ({ dict }: LiveCodeModuleProps) => {
   const [userName, setUserName] = useState<string>('Guest');
   const [animationKey, setAnimationKey] = useState<number>(0);
+  const formRef = useRef<HTMLFormElement>(null);
 
   const applyName = (newName: string) => {
     setUserName(newName);
@@ -16,8 +23,9 @@ const LiveCodeModule = (dict: Dictionary) => {
     const name = formData.get('query') as string;
     if (name.trim()) {
       applyName(name.trim());
+      formRef.current?.reset();
     } else {
-      toast.error('Please enter your name.');
+      toast.error(dict.liveCodeModule.errorMsg);
     }
   };
 
@@ -32,7 +40,7 @@ const LiveCodeModule = (dict: Dictionary) => {
             const visitor = &quot;{userName}&quot;;
           </p>
           <p className={`${css.codeLine} ${css.line3}`}>
-            return `Welcome to my portfolio,
+            return `{dict.liveCodeModule.greetText},
           </p>
           <p className={`${css.codeLine} ${css.line4}`}>
             $&lbrace;visitor&rbrace;!`;{' '}
@@ -42,7 +50,7 @@ const LiveCodeModule = (dict: Dictionary) => {
 
           <div className={css.typingContainer}>
             <p className={css.typingText}>
-              Welcome to my portfolio, {userName}!
+              {dict.liveCodeModule.greetText}, {userName}!
             </p>
           </div>
         </div>
@@ -53,20 +61,29 @@ const LiveCodeModule = (dict: Dictionary) => {
             type="text"
             name="query"
             autoComplete="off"
-            placeholder="> Enter your name..."
+            placeholder={dict.liveCodeModule.placeholder}
             autoFocus
           />
 
           <div className={css.moduleButtons}>
-            <button type="submit">Try!</button>
-            <button type="button" onClick={() => applyName('Recruiter')}>
-              Recruiter
+            <button type="submit">{dict.liveCodeModule.btn1}</button>
+            <button
+              type="button"
+              onClick={() => applyName(dict.liveCodeModule.btn2)}
+            >
+              {dict.liveCodeModule.btn2}
             </button>
-            <button type="button" onClick={() => applyName('Client')}>
-              Client
+            <button
+              type="button"
+              onClick={() => applyName(dict.liveCodeModule.btn3)}
+            >
+              {dict.liveCodeModule.btn3}
             </button>
-            <button type="button" onClick={() => applyName('Friend')}>
-              Friend
+            <button
+              type="button"
+              onClick={() => applyName(dict.liveCodeModule.btn4)}
+            >
+              {dict.liveCodeModule.btn4}
             </button>
           </div>
         </form>

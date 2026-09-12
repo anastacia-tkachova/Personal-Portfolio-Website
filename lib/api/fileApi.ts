@@ -28,4 +28,9 @@ export const fileProjectApi: ProjectApiService = {
 
     return formatProject(rawProject, lang);
   },
+
+  async fetchAllProjects(lang: Language = 'en'): Promise<Project[]> {
+    const projects = await readProjectsFile();
+    return projects.map((rawProject) => formatProject(rawProject, lang));
+  },
 };

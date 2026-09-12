@@ -3,7 +3,11 @@ import LiveCodeModule from '../LiveCodeModule/LiveCodeModule';
 import Link from 'next/link';
 import { Dictionary } from '@/lib/i18n/getDictionary';
 
-const Hero = (dict: Dictionary) => {
+export interface HeroProps {
+  dict: Dictionary;
+}
+
+const Hero = ({ dict }: HeroProps) => {
   return (
     <section className={css.hero}>
       <div className={css.container}>

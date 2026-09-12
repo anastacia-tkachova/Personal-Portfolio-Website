@@ -3,7 +3,11 @@ import css from './About.module.css';
 import { Icon } from '../ui/Icon/Icon';
 import type { Dictionary } from '@/lib/i18n/getDictionary';
 
-const About = (dict: Dictionary) => {
+export interface AboutProps {
+  dict: Dictionary;
+}
+
+const About = ({ dict }: AboutProps) => {
   return (
     <section className={css.about}>
       <Image

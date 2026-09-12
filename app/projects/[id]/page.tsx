@@ -1,0 +1,37 @@
+import {
+  QueryClient,
+  HydrationBoundary,
+  dehydrate,
+} from '@tanstack/react-query';
+import { notFound } from 'next/navigation';
+import { getCurrentLang } from '@/lib/i18n/server';
+import { fetchProjectById } from '@/lib/api/projects';
+import ProjectPreviewClient from '../../@modal/(.)projects/[id]/ProjectPreview.client';
+import { getDictionary } from '@/lib/i18n/getDictionary';
+
+type Props = {
+  params: Promise<{ id: string }>;
+};
+
+export default async function ProjectModalPage({ params }: Props) {
+  const { id } = await params;
+  const lang = await getCurrentLang();
+  const dict = await getDictionary(lang);
+
+  if (!id) {
+    notFound();
+  }
+
+  const queryClient = new QueryClient();
+
+  await queryClient.fetchQuery({
+    queryKey: ['project', id, lang],
+    queryFn: () => fetchProjectById(id, lang),
+  });
+
+  return (
+    <HydrationBoundary state={dehydrate(queryClient)}>
+      <ProjectPreviewClient id={id} lang={lang} dict={dict} />
+    </HydrationBoundary>
+  );
+}
