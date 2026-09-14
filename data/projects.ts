@@ -1,6 +1,6 @@
 import { RawProject } from '@/types/project';
 
-export const projects: RawProject[] = [
+const projects: RawProject[] = [
   {
     id: 'NoteHub',
     title: {
@@ -139,3 +139,5 @@ export const projects: RawProject[] = [
   },
   // FilmSearch
 ];
+
+export default projects;

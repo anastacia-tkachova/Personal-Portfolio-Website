@@ -3,15 +3,18 @@ import Image from 'next/image';
 import { Project } from '@/types/project';
 import Link from 'next/link';
 import clsx from 'clsx';
+import { Dictionary } from '@/lib/i18n/getDictionary';
 
 interface ProjectCardProps {
   project: Project;
+  dict: Dictionary;
   isModal?: boolean;
   isList?: boolean;
 }
 
 const ProjectCard = ({
   project,
+  dict,
   isModal = false,
   isList = false,
 }: ProjectCardProps) => {
@@ -42,7 +45,9 @@ const ProjectCard = ({
       <div className={css.projectTextArea}>
         <h3 className={css.projectTitle}>{project.title}</h3>
 
-        {isModal && <p className={css.projectArticleText}>{project.article}</p>}
+        {(!isList || isModal) && (
+          <p className={css.projectArticleText}>{project.article}</p>
+        )}
 
         {isList && (
           <p className={css.projectDescription}>{project.description}</p>
@@ -73,7 +78,7 @@ const ProjectCard = ({
             className={css.projectDetailButton}
             scroll={false}
           >
-            Details
+            {dict.projects.cardDetailBtn}
           </Link>
         )}
       </div>

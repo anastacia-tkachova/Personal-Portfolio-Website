@@ -45,7 +45,10 @@
   },
   "projects": {
     "notFound": "No projects found.",
-    "modalError": "Something went wrong while loading project details."
+    "modalError": "Something went wrong while loading project details.",
+    "viewAll": "View all projects",
+    "projectsError": "Something went wrong while loading projects page.",
+    "cardDetailBtn": "Details"
   },
   "contacts": {
     "title": "Contacts"

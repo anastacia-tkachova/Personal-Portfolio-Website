@@ -1,37 +1,39 @@
-import {
-  QueryClient,
-  HydrationBoundary,
-  dehydrate,
-} from '@tanstack/react-query';
 import { notFound } from 'next/navigation';
 import { getCurrentLang } from '@/lib/i18n/server';
 import { fetchProjectById } from '@/lib/api/projects';
-import ProjectPreviewClient from '../../@modal/(.)projects/[id]/ProjectPreview.client';
 import { getDictionary } from '@/lib/i18n/getDictionary';
+import css from '@/components/ProjectCard/ProjectCard.module.css';
+import ProjectDetails from '@/app/components/projects/ProjectDetails/ProjectDetails';
 
 type Props = {
   params: Promise<{ id: string }>;
 };
 
-export default async function ProjectModalPage({ params }: Props) {
+export async function generateMetadata({ params }: Props) {
   const { id } = await params;
   const lang = await getCurrentLang();
-  const dict = await getDictionary(lang);
+  const project = await fetchProjectById(id, lang);
 
-  if (!id) {
-    notFound();
-  }
+  return {
+    title: project?.title ?? 'Project Details',
+  };
+}
 
-  const queryClient = new QueryClient();
+export default async function ProjectPage({ params }: Props) {
+  const { id } = await params;
+  if (!id) notFound();
 
-  await queryClient.fetchQuery({
-    queryKey: ['project', id, lang],
-    queryFn: () => fetchProjectById(id, lang),
-  });
+  const lang = await getCurrentLang();
+  const [dict, project] = await Promise.all([
+    getDictionary(lang),
+    fetchProjectById(id, lang),
+  ]);
+
+  if (!project) notFound();
 
   return (
-    <HydrationBoundary state={dehydrate(queryClient)}>
-      <ProjectPreviewClient id={id} lang={lang} dict={dict} />
-    </HydrationBoundary>
+    <main className={css.main}>
+      <ProjectDetails project={project} dict={dict} isModal={false} />
+    </main>
   );
 }

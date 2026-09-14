@@ -4,7 +4,7 @@ import { getDictionary } from '@/lib/i18n/getDictionary';
 import { fetchAllProjects } from '@/lib/api/projects';
 import Hero from './components/Hero/Hero';
 import About from './components/About/About';
-import ProjectGrid from './components/ProjectsGrid/ProjectsGrid';
+import ProjectGrid from './components/projects/ProjectsGrid/ProjectsGrid';
 import Contacts from './components/Contacts/Contacts';
 import Education from './components/Education/Education';
 import { Language } from '@/types/project';
@@ -22,7 +22,7 @@ const MainPage = async () => {
 
       <About dict={dict} />
 
-      <ProjectGrid projects={projects} dict={dict} />
+      <ProjectGrid projects={projects} dict={dict} isMainPage={true} />
 
       <Contacts dict={dict} />
 

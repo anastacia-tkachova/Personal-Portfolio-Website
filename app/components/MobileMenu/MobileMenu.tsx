@@ -4,7 +4,7 @@ import Navigation from '../ui/Navigation/Navigation';
 const MobileMenu = () => {
   return (
     <div>
-      <Navigation />
+      <Navigation lang={'en'} />
 
       <div>
         <SocialLinks

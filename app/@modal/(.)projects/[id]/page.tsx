@@ -24,10 +24,15 @@ export default async function ProjectModalPage({ params }: Props) {
 
   const queryClient = new QueryClient();
 
-  await queryClient.fetchQuery({
+  const project = await queryClient.fetchQuery({
     queryKey: ['project', id, lang],
     queryFn: () => fetchProjectById(id, lang),
+    staleTime: 1000 * 60 * 5,
   });
+
+  if (!project) {
+    notFound();
+  }
 
   return (
     <HydrationBoundary state={dehydrate(queryClient)}>

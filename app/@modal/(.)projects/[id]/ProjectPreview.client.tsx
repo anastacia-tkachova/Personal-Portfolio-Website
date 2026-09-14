@@ -1,29 +1,22 @@
 'use client';
 
 import { useRouter } from 'next/navigation';
-import { useEffect } from 'react';
 import Modal from '@/app/components/ui/Modal/Modal';
-import type { Language, Project } from '@/types/project';
+import type { Language } from '@/types/project';
 import css from '@/components/ProjectCard/ProjectCard.module.css';
 import { useQuery } from '@tanstack/react-query';
 import { fetchProjectById } from '@/lib/api/projects';
-import ProjectCard from '@/app/components/ProjectCard/ProjectCard';
 import { Loader } from '@/app/components/ui/Loader';
 import { Dictionary } from '@/lib/i18n/getDictionary';
+import ProjectDetails from '@/app/components/projects/ProjectDetails/ProjectDetails';
 
 interface Props {
   id: string;
   lang: Language;
   dict: Dictionary;
-  initialData?: Project;
 }
 
-export default function ProjectPreviewClient({
-  id,
-  lang,
-  dict,
-  initialData,
-}: Props) {
+export default function ProjectPreviewClient({ id, lang, dict }: Props) {
   const router = useRouter();
 
   const {
@@ -33,20 +26,9 @@ export default function ProjectPreviewClient({
   } = useQuery({
     queryKey: ['project', id, lang],
     queryFn: () => fetchProjectById(id, lang),
-    initialData,
     enabled: Boolean(id),
     staleTime: 1000 * 60 * 5,
   });
-
-  useEffect(() => {
-    const originalTitle = document.title;
-    if (project?.title) {
-      document.title = project.title;
-    }
-    return () => {
-      document.title = originalTitle;
-    };
-  }, [project?.title]);
 
   const handleClose = () => {
     if (window.history.length > 2) {
@@ -84,7 +66,7 @@ export default function ProjectPreviewClient({
           Close
         </button>
 
-        <ProjectCard project={project} isModal={true} isList={false} />
+        <ProjectDetails project={project} dict={dict} isModal={true} />
       </div>
     </Modal>
   );

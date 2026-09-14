@@ -1,5 +1,3 @@
-import fs from 'fs/promises';
-import path from 'path';
 import type { ProjectApiService } from './types';
 import type { RawProject, Project, Language } from '@/types/project';
 import { formatProject } from './formatters';
@@ -11,9 +9,9 @@ async function readProjectsFile(): Promise<RawProject[]> {
     return cachedProjects;
   }
 
-  const filePath = path.join(process.cwd(), 'src', 'data', 'projects.json');
-  const fileData = await fs.readFile(filePath, 'utf-8');
-  cachedProjects = JSON.parse(fileData);
+  const importedData = await import('@/data/projects');
+  cachedProjects = importedData.default;
+  
   return cachedProjects!;
 }
 

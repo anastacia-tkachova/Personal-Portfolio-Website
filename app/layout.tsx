@@ -6,10 +6,9 @@ import Header from '@/app/components/Header/Header';
 import Footer from '@/app/components/Footer/Footer';
 import { Language } from '@/types/project';
 import { getDictionary } from '@/lib/i18n/getDictionary';
+import { cookies } from 'next/headers';
 
-const baseUrl = process.env.VERCEL_URL
-  ? `https://${process.env.VERCEL_URL}`
-  : 'http://localhost:3000';
+const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://example.com';
 
 type Props = {
   children: React.ReactNode;
@@ -17,9 +16,12 @@ type Props = {
   params: Promise<{ lang: string }>;
 };
 
-export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const { lang } = await params;
-  const dict = await getDictionary(lang as Language);
+export async function generateMetadata(): Promise<Metadata> {
+  const cookieStore = await cookies();
+  const savedLang = cookieStore.get('NEXT_LOCALE')?.value;
+
+  const lang: Language = savedLang === 'ua' ? 'ua' : 'en';
+  const dict = await getDictionary(lang);
 
   return {
     metadataBase: new URL(baseUrl),
@@ -31,7 +33,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       description: dict.metadataTranslations.description,
       url: '/',
       type: 'website',
-      locale: lang === 'uk' ? 'uk_UA' : 'en_US',
+      locale: lang === 'ua' ? 'uk_UA' : 'en_US',
       images: [
         {
           url: '/openGraph.png',
