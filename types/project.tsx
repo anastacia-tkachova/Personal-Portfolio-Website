@@ -5,11 +5,30 @@ export type LocalizedField = {
   ua: string;
 };
 
+export type LocalizedArticle = {
+  en: {
+    summary: string;
+    featuresTitle: string;
+    features: {
+      title: string;
+      description: string;
+    }[];
+  };
+  ua: {
+    summary: string;
+    featuresTitle: string;
+    features: {
+      title: string;
+      description: string;
+    }[];
+  };
+};
+
 export interface RawProject {
   id: string;
   title: LocalizedField;
   description: LocalizedField;
-  article: LocalizedField;
+  article: LocalizedArticle;
   tags: string[];
   image: string;
   demo: string;

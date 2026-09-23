@@ -32,7 +32,7 @@ export default async function ProjectPage({ params }: Props) {
   if (!project) notFound();
 
   return (
-    <main className={css.main}>
+    <main className={css.main} suppressHydrationWarning>
       <ProjectDetails project={project} dict={dict} isModal={false} />
     </main>
   );

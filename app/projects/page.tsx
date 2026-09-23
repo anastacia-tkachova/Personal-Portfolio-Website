@@ -18,7 +18,7 @@ export default async function ProjectPage() {
   }
 
   return (
-    <main className={css.main}>
+    <main className={css.main} suppressHydrationWarning>
       <div className={css.container}>
         <ProjectGrid projects={projects} dict={dict} />
       </div>
