@@ -16,7 +16,7 @@ const projects: RawProject[] = [
       ua: ''
     },
     tags: ['Next.js', 'React', 'TanStack Query', 'JavaScript', 'Tailwind CSS', 'Protected Routing'],
-    image: './img/notehub-og-meta.jpg',
+    image: '/img/notehub-og-meta.jpg',
     demo: '',
     demoUrl: 'https://note-hub-indol-sigma-77.vercel.app/',
     githubUrl: 'https://github.com/anastacia-tkachova/NoteHub',
@@ -39,7 +39,7 @@ const projects: RawProject[] = [
       ua: ''
     },
     tags: ['HTML5', 'JavaScript', 'CSS', 'Team Leadership'],
-    image: './img/match-delivery.png',
+    image: '/img/match-delivery.png',
     demo: '',
     demoUrl: 'https://anastacia-tkachova.github.io/STP-13021/',
     githubUrl: 'https://github.com/anastacia-tkachova/STP-13021',
@@ -62,7 +62,7 @@ const projects: RawProject[] = [
       ua: ''
     },
     tags: ['HTML5', 'JavaScript', 'CSS', 'REST APIs', 'Git'],
-    image: './img/mebleria.webp',
+    image: '/img/mebleria.webp',
     demo: '',
     demoUrl: 'https://vitaliypolets.github.io/webcrafters-project-02/',
     githubUrl: 'https://github.com/anastacia-tkachova/WebCrafters-Meblieriya',
@@ -85,7 +85,7 @@ const projects: RawProject[] = [
       ua: '',
     },
     tags: ['HTML', 'JavaScript', 'CSS'],
-    image: './img/EcoTote.png',
+    image: '/img/EcoTote.png',
     demo: '',
     demoUrl: 'https://vitaliypolets.github.io/webcrafters-project-01/',
     githubUrl: 'https://github.com/anastacia-tkachova/WebCrafters-EcoTotes',
@@ -108,7 +108,7 @@ const projects: RawProject[] = [
       ua: ''
     },
     tags: ['JavaScript', 'REST APIs', 'CSS', 'Parcel'],
-    image: './img/image-search.png',
+    image: '/img/image-search.png',
     demo: '',
     demoUrl: 'https://vitaliypolets.github.io/webcrafters-project-02/',
     githubUrl: 'https://github.com/anastacia-tkachova/Image-Search',
@@ -131,7 +131,7 @@ const projects: RawProject[] = [
       ua: '',
     },
     tags: ['React', 'React Query', 'JavaScript', 'Tailwind CSS'],
-    image: './img/film-search.png',
+    image: '/img/film-search.png',
     demo: '',
     demoUrl: 'https://04-react-query-rosy-psi.vercel.app/',
     githubUrl: 'https://github.com/anastacia-tkachova/React-Query-Data-Management-App',

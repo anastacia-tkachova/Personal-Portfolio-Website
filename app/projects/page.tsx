@@ -1,7 +1,7 @@
 import { getCurrentLang } from '@/lib/i18n/server';
 import { fetchAllProjects } from '@/lib/api/projects';
 import { getDictionary } from '@/lib/i18n/getDictionary';
-import css from '../components/ProjectsGrid/ProjectsGrid.module.css';
+import css from '@/app/components/projects/ProjectsGrid/ProjectsGrid.module.css';
 import ProjectGrid from '../components/projects/ProjectsGrid/ProjectsGrid';
 
 export default async function ProjectPage() {

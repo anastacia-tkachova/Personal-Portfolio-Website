@@ -12,7 +12,10 @@ export type IconName =
   | 'night'
   | 'langArrow'
   | 'linkArrow'
-  | 'college';
+  | 'college'
+  | 'ecotote'
+  | 'logoWithoutDot'
+  | 'itvdn';
 
 interface IconProps extends SVGProps<SVGSVGElement> {
   name: IconName;
@@ -35,6 +38,6 @@ export const Icon: FC<IconProps> = ({
     aria-hidden="true"
     {...props}
   >
-    <use href={`/sprite.svg#icon-${name}`} />
+    <use href={`/img/sprite.svg#icon-${name}`} />
   </svg>
 );

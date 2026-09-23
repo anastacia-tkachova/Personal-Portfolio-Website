@@ -28,8 +28,8 @@ const ProjectCard = ({
         <Image
           src={project.image}
           alt={project.title}
-          fill
-          sizes="(max-width: 768px) 100vw, 800px"
+          width={240}
+          height={200}
           className={css.projectImage}
         />
 

@@ -1,4 +1,5 @@
 import css from './Header.module.css';
+import { Icon } from '../ui/Icon/Icon';
 import Navigation from '../ui/Navigation/Navigation';
 import SocialLinks from '../ui/SocialLinks/SocialLinks';
 import Image from 'next/image';
@@ -14,13 +15,7 @@ const Header = ({ lang }: HeaderProps) => {
   return (
     <header className={css.header}>
       <Link href="/" className={css.logoLink}>
-        <Image
-          src="/logo.svg"
-          alt="Site Logo"
-          width={40}
-          height={40}
-          priority
-        />
+        <Icon name="logoWithoutDot" />
       </Link>
 
       <nav aria-label="Main Navigation" className={css.headerNav}>

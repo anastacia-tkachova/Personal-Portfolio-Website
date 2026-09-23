@@ -5,7 +5,7 @@ import {
 } from '@tanstack/react-query';
 import { notFound } from 'next/navigation';
 import { getCurrentLang } from '@/lib/i18n/server';
-import { fetchProjectById } from '@/lib/api/projects';
+import { clientProjectApi } from '@/lib/api/clientApi';
 import ProjectPreviewClient from './ProjectPreview.client';
 import { getDictionary } from '@/lib/i18n/getDictionary';
 
@@ -26,7 +26,7 @@ export default async function ProjectModalPage({ params }: Props) {
 
   const project = await queryClient.fetchQuery({
     queryKey: ['project', id, lang],
-    queryFn: () => fetchProjectById(id, lang),
+    queryFn: () => clientProjectApi.fetchProjectById(id, lang),
     staleTime: 1000 * 60 * 5,
   });
 

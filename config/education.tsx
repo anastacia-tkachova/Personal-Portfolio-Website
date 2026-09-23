@@ -21,7 +21,7 @@ export const EDUCATION: EducationItem[] = [
       },
     ],
     alt: 'GoIt Certificate Preview',
-    image: '@/data/img/goit.png',
+    image: '/img/goit.png',
   },
   {
     id: 'itvdn',
@@ -49,7 +49,7 @@ export const EDUCATION: EducationItem[] = [
       },
     ],
     alt: 'ITVDN Certificates Previews',
-    image: '@/data/img/itvdn.png',
+    image: '/img/itvdn.png',
   },
   {
     id: 'college',

@@ -72,7 +72,7 @@ export default async function RootLayout({ children, modal, params }: Props) {
 
   return (
     <html lang={lang || 'en'}>
-      <body className={roboto.variable}>
+      <body className={roboto.variable} suppressHydrationWarning>
         <TanStackProvider>
           <Header lang={lang as Language} />
 

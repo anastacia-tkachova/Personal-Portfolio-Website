@@ -1,17 +1,12 @@
-import 'server-only';
 import { api } from './api';
-import { cookies } from 'next/headers';
 import type { ProjectApiService } from './types';
 import type { Project, Language } from '@/types/project';
 
-export const serverProjectApi: ProjectApiService = {
+export const clientProjectApi: ProjectApiService = {
   async fetchProjectById(id: string, lang: Language = 'en'): Promise<Project> {
-    const cookieStore = await cookies();
-
     const response = await api.get<Project>(`/projects/${id}`, {
       params: { lang },
       headers: {
-        Cookie: cookieStore.toString(),
         'Accept-Language': lang,
       },
     });
@@ -20,12 +15,9 @@ export const serverProjectApi: ProjectApiService = {
   },
 
   async fetchAllProjects(lang: Language = 'en'): Promise<Project[]> {
-    const cookieStore = await cookies();
-
     const response = await api.get<Project[]>('/projects', {
       params: { lang },
       headers: {
-        Cookie: cookieStore.toString(),
         'Accept-Language': lang,
       },
     });

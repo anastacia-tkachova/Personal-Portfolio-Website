@@ -11,7 +11,7 @@ const About = ({ dict }: AboutProps) => {
   return (
     <section className={css.about}>
       <Image
-        src=""
+        src="/img/AM_Nx1.png"
         alt={dict.about.imageAlt}
         width={320}
         height={320}

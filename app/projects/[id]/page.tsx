@@ -1,8 +1,8 @@
 import { notFound } from 'next/navigation';
 import { getCurrentLang } from '@/lib/i18n/server';
-import { fetchProjectById } from '@/lib/api/projects';
+import { serverProjectApi } from '@/lib/api/serverApi';
 import { getDictionary } from '@/lib/i18n/getDictionary';
-import css from '@/components/ProjectCard/ProjectCard.module.css';
+import css from '@/app/components/projects/ProjectCard/ProjectCard.module.css';
 import ProjectDetails from '@/app/components/projects/ProjectDetails/ProjectDetails';
 
 type Props = {
@@ -12,7 +12,7 @@ type Props = {
 export async function generateMetadata({ params }: Props) {
   const { id } = await params;
   const lang = await getCurrentLang();
-  const project = await fetchProjectById(id, lang);
+  const project = await serverProjectApi.fetchProjectById(id, lang);
 
   return {
     title: project?.title ?? 'Project Details',
@@ -26,7 +26,7 @@ export default async function ProjectPage({ params }: Props) {
   const lang = await getCurrentLang();
   const [dict, project] = await Promise.all([
     getDictionary(lang),
-    fetchProjectById(id, lang),
+    serverProjectApi.fetchProjectById(id, lang),
   ]);
 
   if (!project) notFound();

@@ -3,7 +3,7 @@
 import { useRouter } from 'next/navigation';
 import Modal from '@/app/components/ui/Modal/Modal';
 import type { Language } from '@/types/project';
-import css from '@/components/ProjectCard/ProjectCard.module.css';
+import css from '@/app/components/projects/ProjectCard/ProjectCard.module.css';
 import { useQuery } from '@tanstack/react-query';
 import { fetchProjectById } from '@/lib/api/projects';
 import { Loader } from '@/app/components/ui/Loader';
@@ -25,7 +25,11 @@ export default function ProjectPreviewClient({ id, lang, dict }: Props) {
     isError,
   } = useQuery({
     queryKey: ['project', id, lang],
-    queryFn: () => fetchProjectById(id, lang),
+    queryFn: async () => {
+      const res = await fetch(`/api/projects/${id}?lang=${lang}`);
+      if (!res.ok) throw new Error('Failed to fetch');
+      return res.json();
+    },
     enabled: Boolean(id),
     staleTime: 1000 * 60 * 5,
   });
